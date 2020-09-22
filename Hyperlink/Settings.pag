@@ -1,0 +1,243 @@
+VERSION 5.00
+Begin VB.PropertyPage Settings 
+   Caption         =   "Settings"
+   ClientHeight    =   3885
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   6375
+   BeginProperty Font 
+      Name            =   "Tahoma"
+      Size            =   8.25
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
+   PaletteMode     =   0  'Halftone
+   ScaleHeight     =   3885
+   ScaleWidth      =   6375
+   Begin VB.CheckBox chkEnabled 
+      Caption         =   "Control Enabled"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   285
+      Left            =   260
+      TabIndex        =   0
+      Top             =   200
+      Width           =   1530
+   End
+   Begin VB.Frame Frame1 
+      Caption         =   "Frame1"
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   3015
+      Left            =   120
+      TabIndex        =   2
+      Top             =   240
+      Width           =   6135
+      Begin VB.CheckBox chkMOPointer 
+         Caption         =   "Use hand pointer on MouseOver"
+         Height          =   375
+         Left            =   3360
+         TabIndex        =   13
+         Top             =   2040
+         Width           =   2415
+      End
+      Begin VB.TextBox txtHyperLink 
+         Height          =   300
+         Left            =   240
+         TabIndex        =   9
+         Top             =   615
+         Width           =   3015
+      End
+      Begin VB.TextBox txtCaption 
+         Height          =   315
+         Left            =   240
+         TabIndex        =   8
+         Top             =   1260
+         Width           =   3015
+      End
+      Begin VB.CheckBox chkAutoSize 
+         Caption         =   "AutoSize Caption"
+         Height          =   285
+         Left            =   240
+         TabIndex        =   7
+         Top             =   1680
+         Width           =   1530
+      End
+      Begin VB.CheckBox chkAutoToolTip 
+         Caption         =   "AutoToolTip"
+         Height          =   285
+         Left            =   240
+         TabIndex        =   6
+         Top             =   2055
+         Width           =   1260
+      End
+      Begin VB.CheckBox chkSoundOn 
+         Caption         =   "SoundOn"
+         Height          =   285
+         Left            =   240
+         TabIndex        =   5
+         Top             =   2430
+         Width           =   1200
+      End
+      Begin VB.ComboBox cboSound 
+         Height          =   315
+         ItemData        =   "Settings.pgx":0000
+         Left            =   3510
+         List            =   "Settings.pgx":000E
+         Style           =   2  'Dropdown List
+         TabIndex        =   4
+         Top             =   615
+         Width           =   2355
+      End
+      Begin VB.CheckBox chkMOUnderline 
+         Caption         =   "Underline on MouseOver"
+         Height          =   255
+         Left            =   3360
+         TabIndex        =   3
+         Top             =   1680
+         Width           =   2655
+      End
+      Begin VB.Label lblHyperLink 
+         Caption         =   "HyperLink:"
+         Height          =   240
+         Left            =   240
+         TabIndex        =   12
+         Top             =   360
+         Width           =   2700
+      End
+      Begin VB.Label lblCaption 
+         Caption         =   "Caption:"
+         Height          =   240
+         Left            =   240
+         TabIndex        =   11
+         Top             =   1020
+         Width           =   2700
+      End
+      Begin VB.Label lblSound 
+         AutoSize        =   -1  'True
+         Caption         =   "Choose Sound:"
+         Height          =   315
+         Left            =   3510
+         TabIndex        =   10
+         Top             =   360
+         Width           =   1095
+      End
+   End
+   Begin VB.Label Label1 
+      AutoSize        =   -1  'True
+      Caption         =   "Modified and redistributed by Alex Wolfe."
+      ForeColor       =   &H00C00000&
+      Height          =   195
+      Left            =   120
+      TabIndex        =   14
+      Top             =   3600
+      Width           =   2985
+   End
+   Begin VB.Label lblInfo 
+      AutoSize        =   -1  'True
+      Caption         =   "(C)2000, Virtual PC's, Inc. - All rights reserved - Programmed by Shannon Harmon"
+      ForeColor       =   &H00C00000&
+      Height          =   195
+      Left            =   120
+      TabIndex        =   1
+      Top             =   3360
+      Width           =   6000
+   End
+End
+Attribute VB_Name = "Settings"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Private Sub cboSound_Change()
+    Changed = True
+End Sub
+
+Private Sub cboSound_Click()
+    Changed = True
+End Sub
+
+Private Sub chkPointer_Click()
+    Changed = True
+End Sub
+
+Private Sub chkSoundOn_Click()
+    Changed = True
+End Sub
+
+Private Sub chkMOUnderline_Click()
+    Changed = True
+End Sub
+
+Private Sub chkAutoToolTip_Click()
+    Changed = True
+End Sub
+
+
+Private Sub chkAutoSize_Click()
+    Changed = True
+End Sub
+
+
+Private Sub txtCaption_Change()
+    Changed = True
+End Sub
+
+
+Private Sub txtHyperLink_Change()
+    Changed = True
+End Sub
+
+
+Private Sub chkEnabled_Click()
+    Changed = True
+End Sub
+
+
+Private Sub PropertyPage_ApplyChanges()
+    SelectedControls(0).SoundOn = (chkSoundOn.Value = vbChecked)
+    SelectedControls(0).MOUnderline = (chkMOUnderline.Value = vbChecked)
+    SelectedControls(0).MOPointer = (chkMOPointer.Value = vbChecked)
+    SelectedControls(0).AutoToolTip = (chkAutoToolTip.Value = vbChecked)
+    SelectedControls(0).AutoSize = (chkAutoSize.Value = vbChecked)
+    SelectedControls(0).Caption = txtCaption.Text
+    SelectedControls(0).HyperLink = txtHyperLink.Text
+    SelectedControls(0).Enabled = (chkEnabled.Value = vbChecked)
+    SelectedControls(0).SoundID = cboSound.ItemData(cboSound.ListIndex)
+End Sub
+
+
+Private Sub PropertyPage_SelectionChanged()
+    chkSoundOn.Value = (SelectedControls(0).SoundOn And vbChecked)
+    chkMOUnderline.Value = (SelectedControls(0).MOUnderline And vbChecked)
+    chkMOPointer.Value = (SelectedControls(0).MOPointer And vbChecked)
+    chkAutoToolTip.Value = (SelectedControls(0).AutoToolTip And vbChecked)
+    chkAutoSize.Value = (SelectedControls(0).AutoSize And vbChecked)
+    txtCaption.Text = SelectedControls(0).Caption
+    txtHyperLink.Text = SelectedControls(0).HyperLink
+    chkEnabled.Value = (SelectedControls(0).Enabled And vbChecked)
+    If SelectedControls(0).SoundID = 101 Then
+      cboSound.ListIndex = 0
+    Else
+      cboSound.ListIndex = 1
+    End If
+End Sub
+
+
